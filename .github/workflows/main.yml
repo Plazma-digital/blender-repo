@@ -20,12 +20,10 @@ jobs:
       
       - name: "Download download blender-floorgenerator asset"
         run: |
-          curl -L \
-            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-            -o blender-floorgenerator.zip \
-            "$(curl -s https://api.github.com/repos/Plazma-digital/Blender-FloorGenerator/releases/latest \
-              | jq -r '.assets[0].browser_download_url')"
-
+          curl -s -H "Authorization: token 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" \
+           https://api.github.com/repos/Plazma-digital/Blender-FloorGenerator/releases/latest \
+           | jq -r '.assets[0].browser_download_url'-L \
+           
       - name: "Run custom script"
         run: echo "custom script"
 

@@ -7,20 +7,18 @@ jobs:
   process-releases:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout current repo
-        uses: actions/checkout@v4
-
       # Loop through repositories
       - name: "Get latest release from blender-floorgenerator"
         id: Blender-FloorGenerator
-        uses: pozetroninc/github-action-get-latest-release@v0.7.0
+        uses: pozetroninc/github-action-get-latest-release@v0.8.0
         with:
-          repository: Plazma-digital/Blender-FloorGenerator
+          owner: Plazma-digital
+          repo: Blender-FloorGenerator
           token: ${{ secrets.GITHUB_TOKEN }}
       
       - name: "Download download blender-floorgenerator asset"
         run: |
-          curl -s -H "Authorization: token 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" \
+          curl -s -H "Authorization: token YOUR_PAT" \
            https://api.github.com/repos/Plazma-digital/Blender-FloorGenerator/releases/latest \
            | jq -r '.assets[0].browser_download_url'-L \
            

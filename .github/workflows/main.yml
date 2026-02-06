@@ -15,7 +15,7 @@ jobs:
         id: Blender-FloorGenerator
         uses: pozetroninc/github-action-get-latest-release@v0.7.0
         with:
-          repository: kkemseke/Blender-FloorGenerator
+          repository: Plazma-digital/Blender-FloorGenerator
           token: ${{ secrets.GITHUB_TOKEN }}
       
       - name: "Download download blender-floorgenerator asset"
@@ -23,7 +23,7 @@ jobs:
           curl -L \
             -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
             -o blender-floorgenerator.zip \
-            "$(curl -s https://api.github.com/repos/kkemseke/Blender-FloorGenerator/releases/latest \
+            "$(curl -s https://api.github.com/repos/Plazma-digital/Blender-FloorGenerator/releases/latest \
               | jq -r '.assets[0].browser_download_url')"
 
       - name: "Run custom script"

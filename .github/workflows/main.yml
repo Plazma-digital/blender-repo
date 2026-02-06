@@ -1,1 +1,38 @@
+name: "Get latest releases & upload via FTP"
 
+on: 
+  workflow_dispatch:
+
+jobs:
+  process-releases:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout current repo
+        uses: actions/checkout@v4
+
+      # Loop through repositories
+      - name: "Get latest release from blender-floorgenerator"
+        id: Blender-FloorGenerator
+        uses: pozetroninc/github-action-get-latest-release@v0.7.0
+        with:
+          repository: kkemseke/Blender-FloorGenerator
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: "Download download blender-floorgenerator asset"
+        run: |
+          curl -L \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -o blender-floorgenerator.zip \
+            "$(curl -s https://api.github.com/repos/kkemseke/Blender-FloorGenerator/releases/latest \
+              | jq -r '.assets[0].browser_download_url')"
+
+      - name: "Run custom script"
+        run: echo "custom script"
+
+      - name: "Upload files to FTP"
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./output

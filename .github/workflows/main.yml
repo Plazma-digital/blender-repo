@@ -11,11 +11,10 @@ jobs:
       # Loop through repositories
       - name: "Get latest release from blender-floorgenerator"
         id: Blender-FloorGenerator
-        uses: pozetroninc/github-action-get-latest-release@v0.8.0
+        uses: pozetroninc/github-action-get-latest-release@master
         with:
           owner: Plazma-digital
           repo: Blender-FloorGenerator
-          token: ${{ secrets.GITHUB_TOKEN }}
       
       - name: "Download download blender-floorgenerator asset"
         run: |

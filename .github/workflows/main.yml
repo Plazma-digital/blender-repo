@@ -13,10 +13,9 @@ jobs:
         id: Blender-FloorGenerator
         uses: pozetroninc/github-action-get-latest-release@master
         with:
-          owner: Plazma-digital
-          repo: Blender-FloorGenerator
+          repository: Plazma-digital/Blender-FloorGenerator
       
-      - name: "Download download blender-floorgenerator asset"
+      - name: "Download blender-floorgenerator asset"
         run: |
           curl -s -H "Authorization: token YOUR_PAT" \
            https://api.github.com/repos/Plazma-digital/Blender-FloorGenerator/releases/latest \

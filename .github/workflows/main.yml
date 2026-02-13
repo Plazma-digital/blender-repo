@@ -5,7 +5,8 @@ on:
 
 jobs:
   process-releases:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
+    
     steps:
       # Loop through repositories
       - name: "Get latest release from blender-floorgenerator"
